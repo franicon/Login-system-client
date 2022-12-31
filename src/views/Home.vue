@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#EAE6F6] min-h-screen flex items-center justify-center">
     <div
-      class="flex flex-col md:flex-row space-y-6 mx-5 bg-gray-100 rounded-2xl shadow-2xl shadow-[#8B8CB2]"
+      class="flex flex-col md:flex-row space-y-6 mx-5 bg-white rounded-2xl shadow-2xl shadow-[#8B8CB2]"
     >
       <!--left-->
       <div
@@ -32,7 +32,7 @@
           <input
             type="text"
             placeholder="Enter email"
-            class="p-3 mt-0.5 border outline-none w-full rounded-md placeholder:text-sm"
+            class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
           />
         </div>
         <div class="mt-5 mb-3">
@@ -40,7 +40,7 @@
           <input
             type="text"
             placeholder="Enter password"
-            class="p-3 mt-0.5 border outline-none w-full rounded-md placeholder:text-sm"
+            class="p-3 mt-0.5 border outline-blue-500 transition duration-200 w-full rounded-md placeholder:text-sm"
           />
         </div>
         <button
