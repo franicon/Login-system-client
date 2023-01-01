@@ -72,25 +72,31 @@
   <vee-form
     class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
     v-show="tab === 'login'"
+    :validation-schema="schema"
+    @submit="login"
   >
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Good to see you.
     </h3>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
-      <input
-        type="text"
+      <vee-field
+        name="email"
+        type="email"
         placeholder="Enter email"
         class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
       />
+      <ErrorMessage name="email" class="text-xs text-red-600" />
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
-      <input
-        type="text"
+      <vee-field
+        type="password"
+        name="password"
         placeholder="Enter password"
         class="p-3 mt-0.5 border outline-blue-500 transition duration-200 w-full rounded-md placeholder:text-sm"
       />
+      <ErrorMessage name="password" class="text-xs text-red-600" />
     </div>
     <button
       class="py-4 mt-1 w-full bg-[#1E1E64] text-white font-normal shadow-[#7C7C94] shadow-2xl hover:-translate-y-0.5 duration-200 transition rounded-md"
