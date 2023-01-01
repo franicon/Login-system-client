@@ -1,5 +1,6 @@
 <template>
-  <div
+  <!--  Register Form-->
+  <vee-form
     class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
     v-show="tab === 'register'"
   >
@@ -8,7 +9,7 @@
     </h3>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Name</label>
-      <input
+      <vee-field
         type="text"
         placeholder="Enter name"
         class="p-3 mt-0.5 border w-full rounded-md placeholder:text-sm outline-blue-500"
@@ -16,16 +17,16 @@
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
-      <input
-        type="text"
+      <vee-field
+        type="email"
         placeholder="Enter email"
         class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
       />
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
-      <input
-        type="text"
+      <vee-field
+        type="password"
         placeholder="Enter password"
         class="p-3 mt-0.5 border outline-blue-500 transition duration-200 w-full rounded-md placeholder:text-sm"
       />
@@ -45,8 +46,12 @@
         >
       </p>
     </div>
-  </div>
-  <div class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10" v-show="tab === 'login'">
+  </vee-form>
+  <!--  Login Form-->
+  <vee-form
+    class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
+    v-show="tab === 'login'"
+  >
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Good to see you.
     </h3>
@@ -82,7 +87,7 @@
         >
       </p>
     </div>
-  </div>
+  </vee-form>
 </template>
 
 <script>
