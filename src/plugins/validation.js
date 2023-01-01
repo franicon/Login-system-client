@@ -1,16 +1,16 @@
 import {
-  alpha_spaces as alphaSpaces,
-  email,
   max,
   min,
+  email,
   required,
+  alpha_spaces as alphaSpaces,
 } from "@vee-validate/rules";
 import {
+  Form as VeeForm,
+  Field as VeeField,
   configure,
   defineRule,
   ErrorMessage,
-  Field as VeeField,
-  Form as VeeForm,
 } from "vee-validate";
 
 export default {
@@ -41,6 +41,7 @@ export default {
       validateOnBlur: true,
       validateOnInput: false,
       validateOnChange: true,
+      validateOnModelUpdate: true,
     });
   },
 };
