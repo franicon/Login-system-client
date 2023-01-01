@@ -4,11 +4,12 @@
     :validation-schema="schema"
     class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
     v-show="tab === 'register'"
+    @submit="register"
   >
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Create your account
     </h3>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Name</label>
       <vee-field
         type="text"
@@ -18,7 +19,7 @@
       />
       <ErrorMessage class="text-red-600 text-xs" name="name" />
     </div>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
       <vee-field
         type="email"
@@ -28,7 +29,7 @@
       />
       <ErrorMessage name="email" class="text-red-600 text-xs" />
     </div>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
       <vee-field
         type="password"
@@ -36,6 +37,7 @@
         placeholder="Enter password"
         class="p-3 mt-0.5 border outline-blue-500 transition duration-200 w-full rounded-md placeholder:text-sm"
       />
+      <ErrorMessage name="password" class="text-red-600 text-xs" />
     </div>
     <button
       class="py-4 mt-1 w-full bg-[#1E1E64] text-white font-normal shadow-[#7C7C94] shadow-2xl hover:-translate-y-0.5 duration-200 transition rounded-md"
@@ -61,7 +63,6 @@
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Good to see you.
     </h3>
-
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
       <input
@@ -107,12 +108,17 @@ export default {
       schema: {
         name: "required|min:3|max:100|alpha_spaces",
         email: "required|email",
-        password: "required",
+        password: "required|min:8|max:24",
       },
     };
   },
   computed: {
     ...mapWritableState(useModalStore, ["isOpen"]),
+  },
+  methods: {
+    register(values) {
+      console.log(values);
+    },
   },
 };
 </script>
