@@ -1,6 +1,7 @@
 <template>
   <!--  Register Form-->
   <vee-form
+    :validation-schema="schema"
     class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
     v-show="tab === 'register'"
   >
@@ -11,14 +12,17 @@
       <label class="font-semibold text-sm text-[#1E1E64]">Name</label>
       <vee-field
         type="text"
+        name="name"
         placeholder="Enter name"
         class="p-3 mt-0.5 border w-full rounded-md placeholder:text-sm outline-blue-500"
       />
+      <ErrorMessage class="text-red-600 text-xs" name="name" />
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
       <vee-field
         type="email"
+        name="email"
         placeholder="Enter email"
         class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
       />
@@ -27,6 +31,7 @@
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
       <vee-field
         type="password"
+        name="password"
         placeholder="Enter password"
         class="p-3 mt-0.5 border outline-blue-500 transition duration-200 w-full rounded-md placeholder:text-sm"
       />
@@ -98,6 +103,11 @@ export default {
   data() {
     return {
       tab: "register",
+      schema: {
+        name: "required",
+        email: "required",
+        password: "required",
+      },
     };
   },
   computed: {
