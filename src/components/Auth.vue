@@ -9,7 +9,7 @@
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Create your account
     </h3>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Name</label>
       <vee-field
         type="text"
@@ -19,7 +19,7 @@
       />
       <ErrorMessage class="text-red-600 text-xs" name="name" />
     </div>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
       <vee-field
         type="email"
@@ -29,7 +29,7 @@
       />
       <ErrorMessage name="email" class="text-red-600 text-xs" />
     </div>
-    <div class="mt-5 mb-3">
+    <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
       <vee-field
         type="password"
@@ -63,7 +63,6 @@
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Good to see you.
     </h3>
-
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
       <input
