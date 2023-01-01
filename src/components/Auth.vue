@@ -26,6 +26,7 @@
         placeholder="Enter email"
         class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
       />
+      <ErrorMessage name="email" class="text-red-600 text-xs" />
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
@@ -104,8 +105,8 @@ export default {
     return {
       tab: "register",
       schema: {
-        name: "required",
-        email: "required",
+        name: "required|min:3|max:100|alpha_spaces",
+        email: "required|email",
         password: "required",
       },
     };
