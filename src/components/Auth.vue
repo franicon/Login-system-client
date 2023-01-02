@@ -17,14 +17,14 @@
       Create your account
     </h3>
     <div class="mt-3 mb-3">
-      <label class="font-semibold text-sm text-[#1E1E64]">Name</label>
+      <label class="font-semibold text-sm text-[#1E1E64]">Username</label>
       <vee-field
         type="text"
-        name="name"
-        placeholder="Enter name"
+        name="username"
+        placeholder="Choose Username"
         class="p-3 mt-0.5 border w-full rounded-md placeholder:text-sm outline-blue-500"
       />
-      <ErrorMessage class="text-red-600 text-xs" name="name" />
+      <ErrorMessage class="text-red-600 text-xs" name="username" />
     </div>
     <div class="mt-3 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
@@ -72,21 +72,21 @@
   <vee-form
     class="lg:pl-16 lg:pr-28 px-10 md:py-16 py-10"
     v-show="tab === 'login'"
-    :validation-schema="schema"
+    :validation-schema="schemaLogin"
     @submit="login"
   >
     <h3 class="max-w-sm lg:pr-36 text-3xl font-bold text-[#1E1E64]">
       Good to see you.
     </h3>
     <div class="mt-5 mb-3">
-      <label class="font-semibold text-sm text-[#1E1E64]">Email</label>
+      <label class="font-semibold text-sm text-[#1E1E64]">Username</label>
       <vee-field
-        name="email"
-        type="email"
-        placeholder="Enter email"
+        name="username"
+        type="text"
+        placeholder="Enter username"
         class="p-3 mt-0.5 border outline-blue-500 w-full rounded-md placeholder:text-sm"
       />
-      <ErrorMessage name="email" class="text-xs text-red-600" />
+      <ErrorMessage name="username" class="text-xs text-red-600" />
     </div>
     <div class="mt-5 mb-3">
       <label class="font-semibold text-sm text-[#1E1E64]">Password</label>
@@ -99,6 +99,7 @@
       <ErrorMessage name="password" class="text-xs text-red-600" />
     </div>
     <button
+      type="submit"
       class="py-4 mt-1 w-full bg-[#1E1E64] text-white font-normal shadow-[#7C7C94] shadow-2xl hover:-translate-y-0.5 duration-200 transition rounded-md"
     >
       Sign in
@@ -117,6 +118,7 @@
 </template>
 
 <script>
+import BaseHttpService from "@/provider/BaseHttpService";
 import { mapWritableState } from "pinia";
 import useModalStore from "@/stores/modal";
 export default {
@@ -125,8 +127,12 @@ export default {
     return {
       tab: "register",
       schema: {
-        name: "required|min:3|max:100|alpha_spaces",
+        username: "required|min:3|max:100|alpha_spaces",
         email: "required|email",
+        password: "required|min:8|max:24",
+      },
+      schemaLogin: {
+        username: "required|min:3|max:100|alpha_spaces",
         password: "required|min:8|max:24",
       },
       reg_show_alert: false,
@@ -139,15 +145,23 @@ export default {
     ...mapWritableState(useModalStore, ["isOpen"]),
   },
   methods: {
-    register(values) {
+    async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_show_alert = "bg-blue-500";
       this.reg_alert_message = "Please wait! Your account is being created";
 
+      await BaseHttpService.postCtx("auth", values);
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_message = "Success! Your Account has been created";
       console.log(values);
+    },
+    async login(values) {
+      const result = await BaseHttpService.postCtx("signin", values);
+      const accessToken = result.data.accessToken;
+      BaseHttpService.loadToken(accessToken);
+      console.log(result.data.accessToken);
+      return result.data.username;
     },
   },
 };
