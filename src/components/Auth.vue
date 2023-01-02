@@ -159,7 +159,7 @@ export default {
     async login(values) {
       const result = await BaseHttpService.postCtx("signin", values);
       const accessToken = result.data.accessToken;
-      BaseHttpService.loadToken(accessToken);
+      BaseHttpService.saveToken(accessToken);
       console.log(result.data.accessToken);
       return result.data.username;
     },
