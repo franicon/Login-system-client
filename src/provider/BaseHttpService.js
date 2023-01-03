@@ -1,11 +1,11 @@
 import axios from "axios";
-import BaseHttpService from "@/provider/BaseHttpService";
+import HttpService from "@/provider/BaseHttpService";
 
 const BASE_URL = "http://localhost:3000";
 let _accessToken = null;
 
 export default {
-  postCtx: (endpoint, data, options = {}) => {
+  post: (endpoint, data, options = {}) => {
     Object.assign(options, getCommonOption());
     return axios.post(`${BASE_URL}/${endpoint}`, data, options);
   },
@@ -21,7 +21,7 @@ export default {
 };
 
 const getCommonOption = () => {
-  const token = BaseHttpService.loadToken();
+  const token = HttpService.loadToken();
 
   return {
     headers: {
@@ -31,7 +31,7 @@ const getCommonOption = () => {
 };
 
 let acessToken = () => {
-  return _accessToken ? _accessToken : BaseHttpService.loadToken();
+  return _accessToken ? _accessToken : HttpService.loadToken();
 };
 
 // let loadToken = () => {
