@@ -164,7 +164,7 @@ export default {
       console.log(result);
       setTimeout(() => {
         this.tab = "login";
-      }, 3000);
+      }, 1000);
     },
     async login(values) {
       const result = await axios.post("signin", values);
