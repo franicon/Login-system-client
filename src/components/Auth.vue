@@ -118,9 +118,9 @@
 </template>
 
 <script>
-import BaseHttpService from "@/provider/BaseHttpService";
 import { mapWritableState } from "pinia";
 import useModalStore from "@/stores/modal";
+import axios from "@/provider/BaseHttpService";
 export default {
   name: "Auth",
   data() {
@@ -150,16 +150,26 @@ export default {
       this.reg_in_submission = true;
       this.reg_show_alert = "bg-blue-500";
       this.reg_alert_message = "Please wait! Your account is being created";
-
-      await BaseHttpService.postCtx("auth", values);
+      let result = null;
+      try {
+        result = await axios.post("auth", values);
+      } catch (error) {
+        this.reg_in_submission = false;
+        this.reg_alert_variant = "bg-red-500";
+        this.reg_alert_message = "Error Occurred Please try again later";
+        return;
+      }
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_message = "Success! Your Account has been created";
-      console.log(values);
+      console.log(result);
+      setTimeout(() => {
+        this.tab = "login";
+      }, 1000);
     },
     async login(values) {
-      const result = await BaseHttpService.postCtx("signin", values);
+      const result = await axios.post("signin", values);
       const accessToken = result.data.accessToken;
-      BaseHttpService.saveToken(accessToken);
+      axios.saveToken(accessToken);
       console.log(result.data.accessToken);
       return result.data.username;
     },
