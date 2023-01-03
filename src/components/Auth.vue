@@ -154,7 +154,9 @@ export default {
       await BaseHttpService.postCtx("auth", values);
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_message = "Success! Your Account has been created";
-      console.log(values);
+      setTimeout(() => {
+        this.tab = "login";
+      }, 3000);
     },
     async login(values) {
       const result = await BaseHttpService.postCtx("signin", values);
